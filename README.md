@@ -1,4 +1,4 @@
-# Meta-DETR: Official PyTorch Implementation
+# [T-PAMI' 2022] Meta-DETR: Official PyTorch Implementation
 
 
 Paper: http://arxiv.org/abs/2103.11731v3
