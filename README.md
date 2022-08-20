@@ -132,13 +132,13 @@ We provide trained model weights after __the base training stage__ for users to 
 
 *All pre-trained model weights are stored in __Google Drive__.*
 
-__MS-COCO__ after base training: click [here](https://drive.google.com/file/d/19tfI_XNZolDId_G5s45YTgcFKt8Ji7c8/view?usp=sharing) to download.
+- __MS-COCO__ after base training: click [here](https://drive.google.com/file/d/19tfI_XNZolDId_G5s45YTgcFKt8Ji7c8/view?usp=sharing) to download.
 
-__Pascal VOC Split 1__ after base training: click [here](https://drive.google.com/file/d/1e3xHnVVsS3JFNGTfh51xjUPPZVtwTGOq/view?usp=sharing) to download.
+- __Pascal VOC Split 1__ after base training: click [here](https://drive.google.com/file/d/1e3xHnVVsS3JFNGTfh51xjUPPZVtwTGOq/view?usp=sharing) to download.
 
-__Pascal VOC Split 2__ after base training: click [here](https://drive.google.com/file/d/1SMOQP-ZKnuIrg3R32a-6FYtA3zkWeNF2/view?usp=sharing) to download.
+- __Pascal VOC Split 2__ after base training: click [here](https://drive.google.com/file/d/1SMOQP-ZKnuIrg3R32a-6FYtA3zkWeNF2/view?usp=sharing) to download.
 
-__Pascal VOC Split 3__ after base training: click [here](https://drive.google.com/file/d/1EJ6uP3yAequS5Wl3gEDtyxKx8ZfgPhAi/view?usp=sharing) to download.
+- __Pascal VOC Split 3__ after base training: click [here](https://drive.google.com/file/d/1EJ6uP3yAequS5Wl3gEDtyxKx8ZfgPhAi/view?usp=sharing) to download.
 
 
 
@@ -167,5 +167,11 @@ If you find Meta-DETR useful or inspiring, please consider citing:
   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
   title={{Meta-DETR}: Image-Level Few-Shot Detection with Inter-Class Correlation Exploitation}, 
   year={2022},
-  doi={10.1109/TPAMI.2022.3195735}}
+  doi={10.1109/TPAMI.2022.3195735}
+}
 ```
+
+## Acknowledgement
+
+Our proposed Meta-DETR is heavily inspired by many outstanding prior works, including [DETR](https://github.com/facebookresearch/detr) and [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
+Thank the authors of above projects for open-sourcing their implementation codes!
