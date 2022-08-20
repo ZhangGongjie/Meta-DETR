@@ -1,7 +1,9 @@
 # __[T-PAMI' 2022]  Meta-DETR__ <br> (Official PyTorch Implementation)
 
 [![arXiv](https://img.shields.io/badge/arXiv-2208.00219-b31b1b.svg)](https://arxiv.org/abs/2208.00219)
-[![Survey](https://github.com/sindresorhus/awesome/blob/main/media/mentioned-badge.svg)](https://github.com/dk-liang/Awesome-Visual-Transformer) 
+[![Survey](https://github.com/sindresorhus/awesome/blob/main/media/mentioned-badge.svg)](https://github.com/dk-liang/Awesome-Visual-Transformer)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
+[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
 [![GitHub license](https://badgen.net/github/license/ZhangGongjie/Meta-DETR)](https://github.com/ZhangGongjie/Meta-DETR/blob/master/LICENSE)
 
 -------
@@ -104,6 +106,9 @@ code_root/
 ```
 
 
+__FURTHER INSTRUCTIONS ARE PENDING...__
+
+
 
 
 
@@ -116,5 +121,51 @@ code_root/
 All scripts to reproduce results reported in [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735)
 are stored in ```./scripts```.
 
+__FURTHER INSTRUCTIONS ARE PENDING...__
 
 
+-----------
+
+## Pre-Trained Model Weights
+
+We provide trained model weights after __the base training stage__ for users to finetune.
+
+*All pre-trained model weights are stored in __Google Drive__.*
+
+__MS-COCO__ after base training: click [here](https://drive.google.com/file/d/19tfI_XNZolDId_G5s45YTgcFKt8Ji7c8/view?usp=sharing) to download.
+
+__Pascal VOC Split 1__ after base training: click [here](https://drive.google.com/file/d/1e3xHnVVsS3JFNGTfh51xjUPPZVtwTGOq/view?usp=sharing) to download.
+
+__Pascal VOC Split 2__ after base training: click [here](https://drive.google.com/file/d/1SMOQP-ZKnuIrg3R32a-6FYtA3zkWeNF2/view?usp=sharing) to download.
+
+__Pascal VOC Split 3__ after base training: click [here](https://drive.google.com/file/d/1EJ6uP3yAequS5Wl3gEDtyxKx8ZfgPhAi/view?usp=sharing) to download.
+
+
+
+----------
+
+
+## License
+
+The implementation codes of Meta-DETR are released under the MIT license.
+
+Please see the [LICENSE](LICENSE) file for more information.
+
+However, prior works' licenses also apply. It is the users' responsibility to ensure compliance with all license requirements.
+
+
+------------
+
+
+## Citation
+
+If you find Meta-DETR useful or inspiring, please consider citing:
+
+```bibtex
+@article{Meta-DETR-2022,
+  author={Zhang, Gongjie and Luo, Zhipeng and Cui, Kaiwen and Lu, Shijian and Xing, Eric P.},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={{Meta-DETR}: Image-Level Few-Shot Detection with Inter-Class Correlation Exploitation}, 
+  year={2022},
+  doi={10.1109/TPAMI.2022.3195735}}
+```
