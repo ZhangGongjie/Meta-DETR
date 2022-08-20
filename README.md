@@ -7,7 +7,7 @@
 -------
 
 This repository is the official PyTorch implementation of the
-T-PAMI 2022 paper "[Meta-DETR: Image-Level Few-Shot Detection with Inter-Class Correlation Exploitation](https://arxiv.org/abs/2208.00219)" by _Gongjie Zhang, Zhipeng Luo, Kaiwen Cui, Shijian Lu, and Eric P. Xing_. 
+T-PAMI 2022 paper "[Meta-DETR: Image-Level Few-Shot Detection with Inter-Class Correlation Exploitation](https://doi.org/10.1109/TPAMI.2022.3195735)" by _Gongjie Zhang, Zhipeng Luo, Kaiwen Cui, Shijian Lu, and Eric P. Xing_. 
 
 <b> [ Important Notice ] </b> &nbsp;&nbsp; Meta-DETR first appeared as a tech report on arXiv.org (https://arxiv.org/abs/2103.11731v2) in 2021. Since its release, we have made substantial improvements to the original version. This repository corresponds to [the final published version accepted by IEEE Transactions on Pattern Analysis and Machine Intelligence (T-PAMI) in 2022](https://doi.org/10.1109/TPAMI.2022.3195735). Please kindly be advised to refer to the latest version of the paper.
 
@@ -18,22 +18,103 @@ T-PAMI 2022 paper "[Meta-DETR: Image-Level Few-Shot Detection with Inter-Class C
 
 Meta-DETR is a state-of-the-art few-shot object detector that performs image-level meta-learning-based prediction and effectively exploits the inter-class correlation to enhance generalization from old knowledge to new classes. Meta-DETR entirely bypasses the proposal quality gap between base and novel classes, thus achieving superior performance than R-CNN-based few-shot object detectors. In addition, Meta-DETR performs meta-learning on a set of support classes at one go, thus effectively leveraging the inter-class correlation for better generalization.
 
-&nbsp;
-
 <div align=center>  
 <img src='.assets/motivation.jpg' width="60%">
 </div>
+
+
 <div align=center>  
 <img src='.assets/MetaDETR_architecture.jpg' width="80%">
 </div>
 
+Please check [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735) or [its preprint version](https://arxiv.org/abs/2208.00219) for more details.
 
 
-Environment:
-Ubuntu 18.04 LTS
-Python 3.7
-Pytorch 1.7.1
-Cuda 10.2
+-------
+
+
+## Installation
+
+### Pre-Requisites
+You must have NVIDIA GPUs to run the codes.
+
+The implementation codes are developed and tested with the following environment setups:
+- Ubuntu LTS 18.04
+- 8x NVIDIA V100 GPUs (32GB)
+- CUDA 10.2
+- Python == 3.7
+- PyTorch == 1.7.1+cu102, TorchVision == 0.8.2+cu102
+- GCC == 7.5.0
+- cython, pycocotools, tqdm, scipy
+
+We recommend using the exact setups above. However, other environments (Linux, Python>=3.7, CUDA>=9.2, GCC>=5.4, PyTorch>=1.5.1, TorchVision>=0.6.1) should also work properly.
+
+### Code Installation
+
+First, clone the repository locally:
+```shell
+git clone https://github.com/ZhangGongjie/Meta-DETR.git
+```
+
+We recommend you to use [Anaconda](https://www.anaconda.com/) to create a conda environment:
+```bash
+conda create -n meta_detr python=3.7 pip
+```
+
+Then, activate the environment:
+```bash
+conda activate meta_detr
+```
+
+Then, install PyTorch and TorchVision:
+
+(preferably using our recommended setups; CUDA version should match your own local environment)
+```bash
+conda install pytorch=1.7.1 torchvision=0.8.2 cudatoolkit=10.2 -c pytorch
+```
+
+After that, install other requirements:
+```bash
+conda install cython scipy tqdm
+pip install -U 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+```
+
+As Meta-DETR is developed upon Deformable DETR, you need to compile [*Deformable Attention*](https://github.com/fundamentalvision/Deformable-DETR).
+```bash
+# compile CUDA operators of Deformable Attention
+cd Meta-DETR
+cd ./models/ops
+sh ./make.sh
+python test.py  # unit test (should see all checking is True)
+```
+
+### Data Preparation
+
+Please download [COCO 2017 dataset](https://cocodataset.org/) and organize them as following:
+
+```
+code_root/
+└── data/
+    └── coco/
+        ├── train2017/
+        ├── val2017/
+        └── annotations/
+        	├── instances_train2017.json
+        	└── instances_val2017.json
+```
+
+
+
+
+
+
+
+## Usage
+
+### Reproducing Paper Results
+
+All scripts to reproduce results reported in [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735)
+are stored in ```./scripts```.
 
 
 
