@@ -1,4 +1,8 @@
-# [T-PAMI' 2022] Meta-DETR: Official PyTorch Implementation
+# [T-PAMI' 2022]  Meta-DETR: Official PyTorch Implementation
+
+[![arXiv](https://img.shields.io/badge/arXiv-2103.11731v3-b31b1b.svg)](https://arxiv.org/abs/2103.11731v3)
+[![Survey](https://github.com/sindresorhus/awesome/blob/main/media/mentioned-badge.svg)](https://github.com/dk-liang/Awesome-Visual-Transformer) 
+[![GitHub license](https://badgen.net/github/license/ZhangGongjie/Meta-DETR)](https://github.com/ZhangGongjie/Meta-DETR/blob/master/LICENSE)
 
 
 Paper: http://arxiv.org/abs/2103.11731v3
@@ -12,4 +16,3 @@ Ubuntu 18.04 LTS
 Python 3.7
 Pytorch 1.7.1
 Cuda 10.2
-
