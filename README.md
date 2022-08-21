@@ -15,7 +15,7 @@ T-PAMI 2022 paper "[Meta-DETR: Image-Level Few-Shot Detection with Inter-Class C
 
 
 -------
-
+&nbsp;
 ## Brief Introduction
 
 Meta-DETR is a state-of-the-art few-shot object detector that performs image-level meta-learning-based prediction and effectively exploits the inter-class correlation to enhance generalization from old knowledge to new classes. Meta-DETR entirely bypasses the proposal quality gap between base and novel classes, thus achieving superior performance than R-CNN-based few-shot object detectors. In addition, Meta-DETR performs meta-learning on a set of support classes at one go, thus effectively leveraging the inter-class correlation for better generalization.
@@ -26,14 +26,14 @@ Meta-DETR is a state-of-the-art few-shot object detector that performs image-lev
 
 
 <div align=center>  
-<img src='.assets/MetaDETR_architecture.jpg' width="80%">
+<img src='.assets/MetaDETR_architecture.jpg' width="93%">
 </div>
 
 Please check [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735) or [its preprint version](https://arxiv.org/abs/2208.00219) for more details.
 
 
 -------
-
+&nbsp;
 
 ## Installation
 
@@ -50,6 +50,8 @@ The implementation codes are developed and tested with the following environment
 - cython, pycocotools, tqdm, scipy
 
 We recommend using the exact setups above. However, other environments (Linux, Python>=3.7, CUDA>=9.2, GCC>=5.4, PyTorch>=1.5.1, TorchVision>=0.6.1) should also work properly.
+
+&nbsp;
 
 ### Code Installation
 
@@ -90,29 +92,54 @@ sh ./make.sh
 python test.py  # unit test (should see all checking is True)
 ```
 
+&nbsp;
+
 ### Data Preparation
+
+#### MS-COCO for Few-Shot Object Detection
 
 Please download [COCO 2017 dataset](https://cocodataset.org/) and organize them as following:
 
 ```
 code_root/
 └── data/
-    └── coco/
+    ├── coco_fewshot/        # Few-shot dataset 
+    └── coco/                # MS-COCO dataset
         ├── train2017/
         ├── val2017/
         └── annotations/
-        	├── instances_train2017.json
-        	└── instances_val2017.json
+            ├── instances_train2017.json
+            └── instances_val2017.json
 ```
 
-
-__FURTHER INSTRUCTIONS ARE PENDING...__
-
+The [`coco_fewshot`](data/coco_fewshot) folder (_already provided in this repo_) contains randomly sampled few-shot datasets as described in [the paper](https://doi.org/10.1109/TPAMI.2022.3195735), including the five data setups with different random seeds. In each K-shot (K=1,3,5,10,30) data setup, we ensure that there are exactly K object instances for each novel class. The numbers of base-class object instances vary.
 
 
+#### Pascal VOC for Few-Shot Object Detection
+
+We transform the original Pascal VOC dataset format into MS-COCO format for parsing. The transformed Pascal VOC dataset is available for download at [GoogleDrive](pending).
 
 
+After downloading MS-COCO-style Pascal VOC, please organize them as following:
 
+```
+code_root/
+└── data/
+    ├── voc_fewshot_split1/     # VOC Few-shot dataset
+    ├── voc_fewshot_split2/     # VOC Few-shot dataset
+    ├── voc_fewshot_split3/     # VOC Few-shot dataset
+    └── voc/                    # MS-COCO-Style Pascal VOC dataset
+        ├── images/
+        └── annotations/
+            ├── xxxxx.json
+            ├── yyyyy.json
+            └── zzzzz.json
+```
+
+Similarly, the few-shot datasets for Pascal VOC are also provided in this repo ([`voc_fewshot_split1`](data/voc_fewshot_split1), [`voc_fewshot_split2`](data/voc_fewshot_split2), and [`voc_fewshot_split3`](data/voc_fewshot_split3)). For each class split, there are 10 data setups with different random seeds. In each K-shot (K=1,2,3,5,10) data setup, we ensure that there are exactly K object instances for each novel class. The numbers of base-class object instances vary.
+
+----------
+&nbsp;
 
 ## Usage
 
@@ -125,26 +152,26 @@ __FURTHER INSTRUCTIONS ARE PENDING...__
 
 
 -----------
-
+&nbsp;
 ## Pre-Trained Model Weights
 
 We provide trained model weights after __the base training stage__ for users to finetune.
 
 *All pre-trained model weights are stored in __Google Drive__.*
 
-- __MS-COCO__ after base training: click [here](https://drive.google.com/file/d/19tfI_XNZolDId_G5s45YTgcFKt8Ji7c8/view?usp=sharing) to download.
+- __MS-COCO__ after base training:&nbsp;&nbsp; click [here](https://drive.google.com/file/d/19tfI_XNZolDId_G5s45YTgcFKt8Ji7c8/view?usp=sharing) to download.
 
-- __Pascal VOC Split 1__ after base training: click [here](https://drive.google.com/file/d/1e3xHnVVsS3JFNGTfh51xjUPPZVtwTGOq/view?usp=sharing) to download.
+- __Pascal VOC Split 1__ after base training:&nbsp;&nbsp; click [here](https://drive.google.com/file/d/1e3xHnVVsS3JFNGTfh51xjUPPZVtwTGOq/view?usp=sharing) to download.
 
-- __Pascal VOC Split 2__ after base training: click [here](https://drive.google.com/file/d/1SMOQP-ZKnuIrg3R32a-6FYtA3zkWeNF2/view?usp=sharing) to download.
+- __Pascal VOC Split 2__ after base training:&nbsp;&nbsp; click [here](https://drive.google.com/file/d/1SMOQP-ZKnuIrg3R32a-6FYtA3zkWeNF2/view?usp=sharing) to download.
 
-- __Pascal VOC Split 3__ after base training: click [here](https://drive.google.com/file/d/1EJ6uP3yAequS5Wl3gEDtyxKx8ZfgPhAi/view?usp=sharing) to download.
+- __Pascal VOC Split 3__ after base training:&nbsp;&nbsp; click [here](https://drive.google.com/file/d/1EJ6uP3yAequS5Wl3gEDtyxKx8ZfgPhAi/view?usp=sharing) to download.
 
 
 
 ----------
 
-
+&nbsp;
 ## License
 
 The implementation codes of Meta-DETR are released under the MIT license.
@@ -156,7 +183,7 @@ However, prior works' licenses also apply. It is the users' responsibility to en
 
 ------------
 
-
+&nbsp;
 ## Citation
 
 If you find Meta-DETR useful or inspiring, please consider citing:
@@ -167,10 +194,12 @@ If you find Meta-DETR useful or inspiring, please consider citing:
   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
   title={{Meta-DETR}: Image-Level Few-Shot Detection with Inter-Class Correlation Exploitation}, 
   year={2022},
-  doi={10.1109/TPAMI.2022.3195735}
+  doi={10.1109/TPAMI.2022.3195735},
 }
 ```
 
+----------
+&nbsp;
 ## Acknowledgement
 
 Our proposed Meta-DETR is heavily inspired by many outstanding prior works, including [DETR](https://github.com/facebookresearch/detr) and [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
