@@ -117,7 +117,7 @@ The [`coco_fewshot`](data/coco_fewshot) folder (_already provided in this repo_)
 
 #### Pascal VOC for Few-Shot Object Detection
 
-We transform the original Pascal VOC dataset format into MS-COCO format for parsing. The transformed Pascal VOC dataset is available for download at [GoogleDrive](pending).
+We transform the original Pascal VOC dataset format into MS-COCO format for parsing. The transformed Pascal VOC dataset is available for download at [GoogleDrive](https://drive.google.com/file/d/1JCxJ2lmNX5E4YsvAZnngVZ5hQeJU67tj/view?usp=sharing).
 
 
 After downloading MS-COCO-style Pascal VOC, please organize them as following:
