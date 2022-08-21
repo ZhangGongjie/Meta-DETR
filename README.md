@@ -146,18 +146,116 @@ Similarly, the few-shot datasets for Pascal VOC are also provided in this repo (
 ### Reproducing Paper Results
 
 All scripts to reproduce results reported in [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735)
-are stored in ```[./scripts](scripts)```. The arguments are pretty easy and straightforward to understand. 
+are stored in [`./scripts`](scripts). The arguments are pretty easy and straightforward to understand. 
+
+Taking MS-COCO as an example, run the following commands to reproduce paper results:
+```bash
+GPUS_PER_NODE=8 ./tools/run_dist_launch.sh 8 ./scripts/run_experiments_coco.sh
+```
 
 
 ### To Perform _**Base Training**_
 
-We take MS-COCO as an example. 
+We take MS-COCO as an example. First, create `basetrain.sh` and copy the following commands into it.
+```bash
+EXP_DIR=exps/coco
+BASE_TRAIN_DIR=${EXP_DIR}/base_train
+mkdir exps
+mkdir ${EXP_DIR}
+mkdir ${BASE_TRAIN_DIR}
 
+python -u main.py \
+    --dataset_file coco_base \
+    --backbone resnet101 \
+    --num_feature_levels 1 \
+    --enc_layers 6 \
+    --dec_layers 6 \
+    --hidden_dim 256 \
+    --num_queries 300 \
+    --batch_size 4 \
+    --category_codes_cls_loss \
+    --epoch 25 \
+    --lr_drop_milestones 20 \
+    --save_every_epoch 5 \
+    --eval_every_epoch 5 \
+    --output_dir ${BASE_TRAIN_DIR} \
+2>&1 | tee ${BASE_TRAIN_DIR}/log.txt
+```
+Then, run the commands below to start base training.
+```bash
+GPUS_PER_NODE=8 ./tools/run_dist_launch.sh 8  ./basetrain.sh
+```
 
 ### To Perform _**Few-Shot Finetuning**_
+We take MS-COCO as an example. First, create `fsfinetune.sh` and copy the following commands into it.
+```bash
+EXP_DIR=exps/coco
+BASE_TRAIN_DIR=${EXP_DIR}/base_train
+mkdir exps
+mkdir ${EXP_DIR}
+mkdir ${BASE_TRAIN_DIR}
+
+fewshot_seed=01
+num_shot=10
+epoch=500
+lr_drop1=300
+lr_drop2=450
+FS_FT_DIR=${EXP_DIR}/seed${fewshot_seed}_${num_shot}shot
+mkdir ${FS_FT_DIR}
+
+python -u main.py \
+    --dataset_file coco_base \
+    --backbone resnet101 \
+    --num_feature_levels 1 \
+    --enc_layers 6 \
+    --dec_layers 6 \
+    --hidden_dim 256 \
+    --num_queries 300 \
+    --batch_size 2 \
+    --category_codes_cls_loss \
+    --resume ${BASE_TRAIN_DIR}/checkpoint.pth \
+    --fewshot_finetune \
+    --fewshot_seed ${fewshot_seed} \
+    --num_shots ${num_shot} \
+    --epoch ${epoch} \
+    --lr_drop_milestones ${lr_drop1} ${lr_drop2} \
+    --warmup_epochs 50 \
+    --save_every_epoch ${epoch} \
+    --eval_every_epoch ${epoch} \
+    --output_dir ${FS_FT_DIR} \
+2>&1 | tee ${FS_FT_DIR}/log.txt
+```
+Note that you need to add `--fewshot_finetune` to indicate that the training and inference should be conducted on few-shot setups. You also need to specify the number of shots, few-shot random seed, training epoch setups, and the checkpoint file path after base training.
+Then, run the commands below to start few-shot finetuning. After finetuning, the program will automatically perform inference on novel classes.
+```bash
+GPUS_PER_NODE=8 ./tools/run_dist_launch.sh 8  ./fsfinetune.sh
+```
 
 
-### To Perform _**Only Inference**_
+### To Perform _**Only Inference**_ After Few-Shot Finetuning
+
+We take MS-COCO as an example. Simply run:
+```bash
+python -u main.py \
+--dataset_file coco_base \
+--backbone resnet101 \
+--num_feature_levels 1 \
+--enc_layers 6 \
+--dec_layers 6 \
+--hidden_dim 256 \
+--num_queries 300 \
+--batch_size 2 \
+--category_codes_cls_loss \
+--resume path/to/checkpoint.pth/generated/by/few-shot-fintuning \
+--fewshot_finetune \
+--fewshot_seed ${fewshot_seed} \
+--num_shots ${num_shot} \
+--eval \
+2>&1 | tee ./log_inference.txt
+```
+Note that user should set `--eval` and `--resume path/to/checkpoint.pth/generated/by/few-shot-fintuning` correctly.
+
+
 
 -----------
 &nbsp;
