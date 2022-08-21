@@ -26,7 +26,7 @@ Meta-DETR is a state-of-the-art few-shot object detector that performs image-lev
 
 
 <div align=center>  
-<img src='.assets/MetaDETR_architecture.jpg' width="93%">
+<img src='.assets/MetaDETR_architecture.jpg' width="95%">
 </div>
 
 Please check [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735) or [its preprint version](https://arxiv.org/abs/2208.00219) for more details.
@@ -146,10 +146,18 @@ Similarly, the few-shot datasets for Pascal VOC are also provided in this repo (
 ### Reproducing Paper Results
 
 All scripts to reproduce results reported in [our T-PAMI paper](https://doi.org/10.1109/TPAMI.2022.3195735)
-are stored in ```./scripts```.
+are stored in ```[./scripts](scripts)```. The arguments are pretty easy and straightforward to understand. 
 
-__FURTHER INSTRUCTIONS ARE PENDING...__
 
+### To Perform _**Base Training**_
+
+We take MS-COCO as an example. 
+
+
+### To Perform _**Few-Shot Finetuning**_
+
+
+### To Perform _**Only Inference**_
 
 -----------
 &nbsp;
